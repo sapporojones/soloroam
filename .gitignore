@@ -23,7 +23,7 @@ __pycache__/*
 .idea
 .vscode
 tags
-.sqlite
+sqlite-latest.sqlite
 
 # Package files
 *.egg
@@ -38,6 +38,7 @@ htmlcov/*
 junit.xml
 coverage.xml
 .pytest_cache/
+.vscode/*
 
 # Build and docs folder/files
 build/*
