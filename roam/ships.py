@@ -45,4 +45,26 @@ class Rat:
     def deal_damage(self, damage):
         player.hp -= 10
 
+    def take_damage(self, damage):
+        self.hp -= damage
+
+class NullBlob:
+    def __init__(self, hp):
+        self.hp = hp
+
+    def deal_damage(self, damage):
+        player.hp -= 30
+
+    def take_damage(self,damage):
+        self.hp -= damage
+
+class SoloSabre:
+    def __init__(self, hp):
+        self.hp = hp
+
+    def deal_damage(self):
+        player.hp -= 20
+
+    def take_damage(self, damage):
+        self.hp -= damage
     

@@ -127,3 +127,13 @@ def parse_input(player_action, movement_options, player):
             player.location = x
             choice = "move"
     return choice
+
+def rat_fight(rat_array, player):
+    while len(rat_array) > 0:
+        rat_array[-1].take_damage(10)
+        player.take_damage(5)
+        if rat_array[-1].hp <= 0:
+            rat_array.remove(rat_array[-1])
+        else:
+            pass
+    return

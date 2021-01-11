@@ -182,3 +182,29 @@ def test_parse_input_move():
             choice = player_action.upper()
             
     assert choice == pilot.location
+
+def test_array_of_events():
+    #list of events for testing
+    possible_events = ['buffer', 'NullBlob', 'Rat']
+    #when this goes live we'll do it programitically maybe    
+    random_event = randint(1, (len(possible_events)-1))
+    selected_event = possible_events[random_event]
+    assert random_event != 0
+
+def test_rat_fight():
+    player = Atron("player", 100, 100, 100, 'D-PNP9')
+    n_spawn = randint(2,6)
+    rat_array = []
+    for n in range(n_spawn):
+        rat_spawn_member = Rat(30)
+        rat_array.append(rat_spawn_member)
+    while len(rat_array) > 0:
+        rat_array[-1].take_damage(10)
+        player.take_damage(5)
+        if rat_array[-1].hp <= 0:
+            rat_array.remove(rat_array[-1])
+        else:
+            pass
+
+    assert player.hp < 100
+    
