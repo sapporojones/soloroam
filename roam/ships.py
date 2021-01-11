@@ -37,3 +37,12 @@ class Atron:
 
     def change_location(self, location):
         self.location = location
+
+class Rat:
+    def __init__(self, hp):
+        self.hp = hp
+
+    def deal_damage(self, damage):
+        player.hp -= 10
+
+    
