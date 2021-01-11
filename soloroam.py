@@ -29,12 +29,12 @@ unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
 def main(player):
     rat_array = 0
     while player.hp >= 1:
-        system.clear_screen()
+        #system.clear_screen()
         status_array = system.status_message(route_list, player, rat_array)
         print(status_array[0])
         print(status_array[1])
         movement_options = system.movement_options(route_list, player)
-        print("Your movement options are:")
+        print("\nYour movement options are:")
         for x in movement_options:
             print(x)
         print(
@@ -46,9 +46,10 @@ def main(player):
             print("You spin your ship.")
 
         action = system.parse_input(player_action, movement_options, player)
-        print(action)
-        print(player.location)
-        break
+        #print(action)
+        #print(player.location)
+        #break
+
 
 
 if __name__ == "__main__":
@@ -56,5 +57,5 @@ if __name__ == "__main__":
     player = Atron("player", 100, 100, 100, route_list[0])
     w.starting_text()
     print(player.location)
-    sleep(5)
+    #sleep(5)
     main(player)

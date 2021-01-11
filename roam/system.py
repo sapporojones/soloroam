@@ -2,6 +2,8 @@ from os import system, name
 import sqlite3
 import requests
 import json
+from random import randint
+
 
 database = r"sqlite-latest.sqlite"
 conn = sqlite3.connect(database)
@@ -90,10 +92,10 @@ def status_message(route_list, pilot, rat_array):
         movement_options.append(route_list[(cur_list_pos + 1)])
 
     if rat_array == 0:
-        rat_string = "There are 0 rats on field with you"
+        rat_string = "\nThere are 0 rats on field with you"
     else:
-        rat_string = f"There are {len(rat_array)} rats on field with you"
-    pilot_string = f"You have {pilot.hp} hp, {pilot.ammo} ammo, {pilot.nanite} paste, and are currently in {pilot.location}."
+        rat_string = f"\nThere are {len(rat_array)} rats on field with you"
+    pilot_string = f"\nYou have {pilot.hp} hp, {pilot.ammo} ammo, {pilot.nanite} paste, and are currently in {pilot.location}."
 
     # compile to list format
     return_listicle.append(rat_string)
