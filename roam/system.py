@@ -3,6 +3,7 @@ import sqlite3
 import requests
 import json
 from random import randint
+from roam.ships import Rat
 
 
 database = r"sqlite-latest.sqlite"
@@ -48,7 +49,7 @@ def find_id_from_system(name):
 def route_control():
     route_list = []
     origin = "D-PNP9"
-    desti = "C9N-CC"
+    desti = "A1-AUH"
     ori_id = find_id_from_system(origin)[0]
     dst_id = find_id_from_system(desti)[0]
     formed_route_url = f"https://esi.evetech.net/latest/route/{ori_id}/{dst_id}/?datasource=tranquility&flag=shortest"
@@ -70,26 +71,25 @@ def get_position_in_route(route_list, loc):
 
 
 def npc_swarm_spawn():
-    n_spawn = randint(1, 4)
+    n_spawn = randint(2, 4)
     rat_array = []
     for n in range(n_spawn):
-        rat_spawn_member = Rat(30)
-        rat_array.append(rat_spawn_member)
+        rat_array.append(Rat(30))
     return rat_array
 
 
 def status_message(route_list, pilot, rat_array):
     movement_options = []
     return_listicle = []
-    cur_pos = pilot.location
-    cur_list_pos = get_position_in_route(route_list, cur_pos)
-    if cur_list_pos == 0:
-        movement_options.append(route_list[1])
-    elif cur_list_pos == route_list[-1]:
-        movement_options.append(route_list[(cur_list_pos - 1)])
-    else:
-        movement_options.append(route_list[(cur_list_pos - 1)])
-        movement_options.append(route_list[(cur_list_pos + 1)])
+    # cur_pos = pilot.location
+    # cur_list_pos = get_position_in_route(route_list, cur_pos)
+    # if cur_list_pos == 0:
+    #     movement_options.append(route_list[1])
+    # elif cur_list_pos == route_list[-1]:
+    #     movement_options.append(route_list[(cur_list_pos - 1)])
+    # else:
+    #     movement_options.append(route_list[(cur_list_pos - 1)])
+    #     movement_options.append(route_list[(cur_list_pos + 1)])
 
     if rat_array == 0:
         rat_string = "\nThere are 0 rats on field with you"
@@ -103,13 +103,14 @@ def status_message(route_list, pilot, rat_array):
     return return_listicle
 
 
-def movement_options(route_list, pilot):
+def movement_options(route_list, player):
     movement_options = []
-    cur_pos = pilot.location
+    cur_pos = player.location
     cur_list_pos = get_position_in_route(route_list, cur_pos)
+    last_system = route_list[-1]
     if cur_list_pos == 0:
         movement_options.append(route_list[1])
-    elif cur_list_pos == route_list[-1]:
+    elif cur_pos == last_system:
         movement_options.append(route_list[(cur_list_pos - 1)])
     else:
         movement_options.append(route_list[(cur_list_pos - 1)])
@@ -120,6 +121,7 @@ def movement_options(route_list, pilot):
 def parse_input(player_action, movement_options, player):
     if player_action.upper() == "RAT":
         choice = "rat"
+
     else:
         choice = "You spin your ship."
     for x in movement_options:
@@ -136,4 +138,4 @@ def rat_fight(rat_array, player):
             rat_array.remove(rat_array[-1])
         else:
             pass
-    return
+    return 

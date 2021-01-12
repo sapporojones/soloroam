@@ -11,6 +11,7 @@ import requests
 
 # local imports
 from roam.ships import Atron
+from roam.ships import Rat
 import roam.words as w
 import roam.system as system
 import json
@@ -27,18 +28,33 @@ unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
 
 
 def main(player):
-    rat_array = 0
+    rat_array = ['reset']
+    current_fight = ''
     while player.hp >= 1:
+
+
         #system.clear_screen()
+        if player.location == route_list[0]:
+            if player.location == current_fight:
+                pass
+            else:
+                pass
+        else:
+            rat_array.remove(rat_array[0])
+            rat_array = system.npc_swarm_spawn()             
+
+        #always spawn rats for exploratory testing.  comment out when released.
+
+
         status_array = system.status_message(route_list, player, rat_array)
-        print(status_array[0])
-        print(status_array[1])
+        print(f"{status_array[0]}\n{status_array[1]}")
+        
         movement_options = system.movement_options(route_list, player)
         print("\nYour movement options are:")
         for x in movement_options:
             print(x)
         print(
-            "What is your decision? \n\n Enter a system name from the list to move, or type rat to shoot rats."
+            "\nWhat is your decision? \n\nEnter a system name from the list to move, or type rat to shoot rats."
         )
         try:
             player_action = str(input())
@@ -46,6 +62,37 @@ def main(player):
             print("You spin your ship.")
 
         action = system.parse_input(player_action, movement_options, player)
+        print(rat_array)
+        if action.lower() == 'rat':
+            if rat_array[0] != 'reset':
+                print('fightin')
+                system.rat_fight(rat_array, player)
+                # system.clear_screen()
+                # status_array = system.status_message(route_list, player, rat_array)
+                # print(f"{status_array[0]}\n{status_array[1]}")
+                # movement_options = system.movement_options(route_list, player)
+                # print("\nYour movement options are:")
+                # fight_location = player.location
+                # for x in movement_options:
+                #     print(x)
+                # print(
+                #     "\nWhat is your decision? \n\nEnter a system name from the list to move, or type rat to shoot rats."
+                # )
+                # try:
+                #     player_action = str(input())
+                # except ValueError:
+                #     print("You spin your ship.")
+                try:
+                    for x in rat_array:
+                        rat_array[x].remove()
+                    rat_array = ['reset']
+                    current_fight = player.location
+                except:
+                    rat_array = ['reset']
+                    current_fight = player.location
+  
+
+                
         #print(action)
         #print(player.location)
         #break
@@ -55,7 +102,8 @@ def main(player):
 if __name__ == "__main__":
     route_list = system.route_control()
     player = Atron("player", 100, 100, 100, route_list[0])
+    system.clear_screen()
     w.starting_text()
     print(player.location)
-    #sleep(5)
+    # sleep(5)
     main(player)
