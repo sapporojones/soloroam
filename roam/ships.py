@@ -15,28 +15,23 @@
 #it needs nanite as a limited resource, and naturally hp as a limited resource
 #the pilot needs to be alterable so that if we need to assign an 'npc' we can reuse the class
 class Atron:
-    def __init__(self, pilot, ammo, nanite, hp, location):
-        self.pilot = pilot
-        self.ammo = ammo
-        self.nanite = nanite
+    def __init__(self, hp, location):
         self.hp = hp
         self.cargo = []
         self.location = location
+        self.score = 0
 
     def add_cargo(self, items):
         self.cargo.append(items)
-
-    def fire_guns(self):
-        self.ammo -= 1
-
-    def use_nanite(self):
-        self.nanite -= 1
 
     def take_damage(self, damage):
         self.hp -= damage
 
     def change_location(self, location):
         self.location = location
+    
+    def score_change(self, points):
+        self.score += points
 
 class Rat:
     def __init__(self, hp):

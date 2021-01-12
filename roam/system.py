@@ -46,12 +46,12 @@ def find_id_from_system(name):
     return system_id
 
 
-def route_control():
+def route_control(origin_system, destination_system):
     route_list = []
-    origin = "D-PNP9"
-    desti = "A1-AUH"
-    ori_id = find_id_from_system(origin)[0]
-    dst_id = find_id_from_system(desti)[0]
+    
+
+    ori_id = find_id_from_system(origin_system)[0]
+    dst_id = find_id_from_system(destination_system)[0]
     formed_route_url = f"https://esi.evetech.net/latest/route/{ori_id}/{dst_id}/?datasource=tranquility&flag=shortest"
     rsp_list = requests.get(formed_route_url)
     rsp_list_json = rsp_list.json()
@@ -95,7 +95,7 @@ def status_message(route_list, pilot, rat_array):
         rat_string = "\nThere are 0 rats on field with you"
     else:
         rat_string = f"\nThere are {len(rat_array)} rats on field with you"
-    pilot_string = f"\nYou have {pilot.hp} hp, {pilot.ammo} ammo, {pilot.nanite} paste, and are currently in {pilot.location}."
+    pilot_string = f"\nYou have {pilot.hp} hp, and are currently in {pilot.location}.  Current score is {pilot.score}."
 
     # compile to list format
     return_listicle.append(rat_string)
@@ -136,6 +136,14 @@ def rat_fight(rat_array, player):
         player.take_damage(5)
         if rat_array[-1].hp <= 0:
             rat_array.remove(rat_array[-1])
+            player.score_change(20)
         else:
             pass
     return 
+
+#pseudocode function for random event generation
+# def event_generator():
+#     event_num = randint(1, len(array_of_encounters))
+#     event_desc = words.enc_text(event_num)
+#     event_outcome(event_num)
+#     return

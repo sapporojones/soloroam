@@ -52,12 +52,17 @@ def main(player):
         print(f"{status_array[0]}\n{status_array[1]}")
         
         movement_options = system.movement_options(route_list, player)
-        print("\nYour movement options are:")
+        print("\nAdjacent systems to your current location are:")
         for x in movement_options:
             print(x)
-        print(
-            "\nWhat is your decision? \n\nEnter a system name from the list to move, or type rat to shoot rats."
-        )
+        if len(movement_options) == 1:
+            print(
+            f"\nWhat is your decision? \n\nAvailable commands are {movement_options[0]}, or type \'rat\' to shoot rats."
+            )   
+        else:
+            print(
+            f"\nWhat is your decision? \n\nAvailable commands are {movement_options[0]}, {movement_options[1]} or type \'rat\' to shoot rats."
+            )
         try:
             player_action = str(input())
         except ValueError:
@@ -70,20 +75,6 @@ def main(player):
                 #print('fightin')
                 system.rat_fight(rat_array, player)
                 # system.clear_screen()
-                # status_array = system.status_message(route_list, player, rat_array)
-                # print(f"{status_array[0]}\n{status_array[1]}")
-                # movement_options = system.movement_options(route_list, player)
-                # print("\nYour movement options are:")
-                # fight_location = player.location
-                # for x in movement_options:
-                #     print(x)
-                # print(
-                #     "\nWhat is your decision? \n\nEnter a system name from the list to move, or type rat to shoot rats."
-                # )
-                # try:
-                #     player_action = str(input())
-                # except ValueError:
-                #     print("You spin your ship.")
                 try:
                     for x in rat_array:
                         rat_array[x].remove()
@@ -94,17 +85,17 @@ def main(player):
                     current_fight = player.location
   
 
-    print(f"\n\nYour ship explodes in to tiny pieces.  \nYour capsule containing your body shatters from the force of the explosion.  \nYou are dead.  You wake up in your hangar where your death clone is set to and prepare to voyage out once again.  \no7 capsuleer the cyno is now lit.")           
-        #print(action)
-        #print(player.location)
-        #break
+    print(f"\n\nYour ship explodes in to tiny pieces at the stargate in {player.location}.  \nYour capsule containing your body shatters from the force of the explosion.  \nYou are dead.  You wake up in your hangar where your death clone is set to and prepare to voyage out once again.  \no7 capsuleer the cyno is now lit. \n\nYour final score was {str(player.score)}")           
+
 
 
 
 if __name__ == "__main__":
-    # route_list = system.route_control()
+    # origin_system = 'D-PNP9'
+    # destination_system = 'C9N-CC'
+    # route_list = system.route_control(origin_system, destination_system)
     route_list = unilist
-    player = Atron("player", 100, 100, 100, route_list[0])
+    player = Atron(100, route_list[0])
     system.clear_screen()
     w.starting_text()
     print(player.location)
