@@ -33,15 +33,17 @@ def main(player):
     while player.hp >= 1:
 
 
-        #system.clear_screen()
+        system.clear_screen()
         if player.location == route_list[0]:
-            if player.location == current_fight:
-                pass
-            else:
-                pass
+            pass
         else:
             rat_array.remove(rat_array[0])
-            rat_array = system.npc_swarm_spawn()             
+            rat_array = system.npc_swarm_spawn()  
+
+        if player.location == current_fight:
+            rat_array = ['reset']
+        else:
+            pass           
 
         #always spawn rats for exploratory testing.  comment out when released.
 
@@ -62,10 +64,10 @@ def main(player):
             print("You spin your ship.")
 
         action = system.parse_input(player_action, movement_options, player)
-        print(rat_array)
+        #print(rat_array)
         if action.lower() == 'rat':
             if rat_array[0] != 'reset':
-                print('fightin')
+                #print('fightin')
                 system.rat_fight(rat_array, player)
                 # system.clear_screen()
                 # status_array = system.status_message(route_list, player, rat_array)
@@ -92,7 +94,7 @@ def main(player):
                     current_fight = player.location
   
 
-                
+    print(f"\n\nYour ship explodes in to tiny pieces.  \nYour capsule containing your body shatters from the force of the explosion.  \nYou are dead.  You wake up in your hangar where your death clone is set to and prepare to voyage out once again.  \no7 capsuleer the cyno is now lit.")           
         #print(action)
         #print(player.location)
         #break
@@ -100,7 +102,8 @@ def main(player):
 
 
 if __name__ == "__main__":
-    route_list = system.route_control()
+    # route_list = system.route_control()
+    route_list = unilist
     player = Atron("player", 100, 100, 100, route_list[0])
     system.clear_screen()
     w.starting_text()

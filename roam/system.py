@@ -91,7 +91,7 @@ def status_message(route_list, pilot, rat_array):
     #     movement_options.append(route_list[(cur_list_pos - 1)])
     #     movement_options.append(route_list[(cur_list_pos + 1)])
 
-    if rat_array == 0:
+    if len(rat_array) == 1:
         rat_string = "\nThere are 0 rats on field with you"
     else:
         rat_string = f"\nThere are {len(rat_array)} rats on field with you"
