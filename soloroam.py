@@ -81,7 +81,7 @@ def main(player):
         else:
             print(
                 f"\nWhat is your decision? \n\nAvailable commands are {movement_options[0]}, "
-                + "{movement_options[1]} or type 'rat' to shoot rats."
+                + f"{movement_options[1]} or type 'rat' to shoot rats."
             )
         try:
             player_action = str(input())
@@ -110,7 +110,7 @@ def main(player):
         + "\nYou are dead.  You wake up in your hangar where your death clone is set to and "
         + "prepare to voyage out once again.  "
         + "\no7 capsuleer the cyno is now lit. "
-        + "\n\nYour final score was {player.score}"
+        + f"\n\nYour final score was {player.score}"
     )
 
 
