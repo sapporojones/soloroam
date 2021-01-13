@@ -4,6 +4,7 @@ import requests
 import json
 from random import randint
 from roam.ships import Rat
+import roam.encounters as e
 
 
 database = r"sqlite-latest.sqlite"
@@ -48,8 +49,6 @@ def find_id_from_system(name):
 
 def route_control(origin_system, destination_system):
     route_list = []
-    
-
     ori_id = find_id_from_system(origin_system)[0]
     dst_id = find_id_from_system(destination_system)[0]
     formed_route_url = f"https://esi.evetech.net/latest/route/{ori_id}/{dst_id}/?datasource=tranquility&flag=shortest"
@@ -81,16 +80,6 @@ def npc_swarm_spawn():
 def status_message(route_list, pilot, rat_array):
     movement_options = []
     return_listicle = []
-    # cur_pos = pilot.location
-    # cur_list_pos = get_position_in_route(route_list, cur_pos)
-    # if cur_list_pos == 0:
-    #     movement_options.append(route_list[1])
-    # elif cur_list_pos == route_list[-1]:
-    #     movement_options.append(route_list[(cur_list_pos - 1)])
-    # else:
-    #     movement_options.append(route_list[(cur_list_pos - 1)])
-    #     movement_options.append(route_list[(cur_list_pos + 1)])
-
     if len(rat_array) == 1:
         rat_string = "\nThere are 0 rats on field with you"
     else:
@@ -130,6 +119,7 @@ def parse_input(player_action, movement_options, player):
             choice = "move"
     return choice
 
+
 def rat_fight(rat_array, player):
     while len(rat_array) > 0:
         rat_array[-1].take_damage(10)
@@ -139,11 +129,33 @@ def rat_fight(rat_array, player):
             player.score_change(20)
         else:
             pass
-    return 
+    return
 
-#pseudocode function for random event generation
-# def event_generator():
-#     event_num = randint(1, len(array_of_encounters))
-#     event_desc = words.enc_text(event_num)
-#     event_outcome(event_num)
-#     return
+
+def encounter_chance(player):
+    encounter_chance = randint(1, 100)
+    if encounter_chance >= 50:
+        event_generator(player)
+    else:
+        pass
+    return
+
+
+def event_generator(player):
+    # list of encounters, for now must be manually updated.  When you add to encounters.py add function name here.
+    # don't forget to increase the max number in randint or additions won't be called
+    encounter_list = [
+        e.cit,
+        e.sabre,
+        e.sappo,
+        e.newbro,
+        e.wreck,
+        e.bloc,
+        e.distracted,
+        e.sb,
+        e.cm,
+        e.tidi,
+    ]
+    selection = randint(0, 9)
+    encounter_list[selection](player)
+    return
