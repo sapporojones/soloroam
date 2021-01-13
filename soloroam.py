@@ -116,9 +116,9 @@ def main(player):
 
 if __name__ == "__main__":
 
-    print("Building route and setting up game...")
-    route_list = system.route_control(origin_system, destination_system)
-    # route_list = unilist
+    #print("Building route and setting up game...")
+    #route_list = system.route_control(origin_system, destination_system)
+    route_list = unilist
     player = Atron(100, route_list[0])
     system.clear_screen()
     w.starting_text()

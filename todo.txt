@@ -1,0 +1,22 @@
+#TODO:
+#encounters from the community to implement:
+#newbro kitchen sink rookie ship
+#burst jamming interceptor messes with you
+#dread rat on a gate
+#officer rat in a belt
+#seekers on gate while you have a corpse in cargo
+#"You land in a dictor bubble in a dead end system in a pipe pocket. No one is in local, and no one was in local in the previous 3 systems. The dictor bubble despawns after 120 second."
+
+#[9:37 AM] Malcoreh Vakarhn: "You get a chat request from [randomly generated name]. Do you accept?"
+# [9:37 AM] Sapporo Jones: I really need to start making these encounters more interactive as opposed to flavor elements yea that's a good point
+# [9:37 AM] Malcoreh Vakarhn: it can branch in several ways, such as "he tells you there is a large fleet 3 jumps away but disconnects without giving any specific intel"
+# [9:38 AM] Malcoreh Vakarhn: or "DONT JUMP GATECAMP OTHER SIDE"
+
+# [9:40 AM] ek tecnic: what about a random neutral cyno?
+
+# [9:42 AM] Malcoreh Vakarhn: don't forget "you jump into system and two people are arguing in local"
+
+# 9:42 AM] ek tecnic: suddenly90drakes
+# [9:42 AM] ek tecnic: or maybe a freighter
+
+#[10:02 AM] Erik Gelers: Suddenly your comms pickup a distress signal, a Rorqual is being attacked by a band of raiders. The signal is only 11 ly away. You initiate your warp engine and withing minutes you arrive at the location, only to find a ravaged wreck of the Rorqual. Your sensors pick nothing in the vicinity. What do you do ?
