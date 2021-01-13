@@ -3,18 +3,26 @@ Solo Roam Text Adventure Game main python script
 by Sapporo Jones
 """
 
-# library mports
+# library imports - stdlib
 from time import sleep
 import sqlite3
-import requests
 from random import randint
+# import json
+
+
+# library imports - external
+# import requests
+
 
 # local imports
 from roam.ships import Atron
-from roam.ships import Rat
+# from roam.ships import Rat
 import roam.words as w
 import roam.system as system
-import json
+
+
+
+
 
 # sqlite db connect stuff for eve SDE, assume it is in the directory we are running this script
 database = r"sqlite-latest.sqlite"
@@ -28,6 +36,13 @@ unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
 
 
 def main(player):
+    """This is the main event loop for the game.
+    As long as the player is alive (player.hp >= 0)
+    the game is running this loop.
+
+    Args:
+        player ([class]): [this represents the player's ship]
+    """
     rat_array = ["reset"]
     current_fight = ""
     while player.hp >= 1:
@@ -55,15 +70,17 @@ def main(player):
 
         movement_options = system.movement_options(route_list, player)
         print("\nAdjacent systems to your current location are:")
-        for x in movement_options:
-            print(x)
+        for movement_option in movement_options:
+            print(movement_option)
         if len(movement_options) == 1:
             print(
-                f"\nWhat is your decision? \n\nAvailable commands are {movement_options[0]}, or type 'rat' to shoot rats."
+                f"\nWhat is your decision? \n\nAvailable commands are {movement_options[0]}, "
+                + "or type 'rat' to shoot rats."
             )
         else:
             print(
-                f"\nWhat is your decision? \n\nAvailable commands are {movement_options[0]}, {movement_options[1]} or type 'rat' to shoot rats."
+                f"\nWhat is your decision? \n\nAvailable commands are {movement_options[0]}, "
+                + "{movement_options[1]} or type 'rat' to shoot rats."
             )
         try:
             player_action = str(input())
@@ -78,8 +95,8 @@ def main(player):
                 system.rat_fight(rat_array, player)
                 # system.clear_screen()
                 try:
-                    for x in rat_array:
-                        rat_array[x].remove()
+                    for rat_item in rat_array:
+                        rat_array[rat_item].remove()
                     rat_array = ["reset"]
                     current_fight = player.location
                 except:
@@ -87,13 +104,19 @@ def main(player):
                     current_fight = player.location
 
     print(
-        f"\n\nYour ship explodes in to tiny pieces at the stargate in {player.location}.  \nYour capsule containing your body shatters from the force of the explosion.  \nYou are dead.  You wake up in your hangar where your death clone is set to and prepare to voyage out once again.  \no7 capsuleer the cyno is now lit. \n\nYour final score was {str(player.score)}"
+        f"\n\nYour ship explodes in to tiny pieces at the stargate in {player.location}.  "
+        + "\nYour capsule containing your body shatters from the force of the explosion.  "
+        + "\nYou are dead.  You wake up in your hangar where your death clone is set to and "
+        + "prepare to voyage out once again.  "
+        + "\no7 capsuleer the cyno is now lit. "
+        + "\n\nYour final score was {player.score}"
     )
 
 
 if __name__ == "__main__":
     origin_system = "D-PNP9"
     destination_system = "C9N-CC"
+    print("Building route and setting up game...")
     route_list = system.route_control(origin_system, destination_system)
     # route_list = unilist
     player = Atron(100, route_list[0])

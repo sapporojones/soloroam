@@ -1,8 +1,9 @@
 from os import system, name
 import sqlite3
-import requests
-import json
+# import json
 from random import randint
+import requests
+
 from roam.ships import Rat
 import roam.encounters as e
 
@@ -47,6 +48,14 @@ def find_id_from_system(name):
     return system_id
 
 
+def find_system_from_id_online(id):
+    url_string = f'https://esi.evetech.net/latest/universe/systems/{id}/?datasource=tranquility&language=en-us'
+    id_request = requests.get(url_string)
+    id_request_json = id_request.json()
+    system_name = id_request_json["name"]
+    return system_name
+
+
 def route_control(origin_system, destination_system):
     route_list = []
     ori_id = find_id_from_system(origin_system)[0]
@@ -55,7 +64,10 @@ def route_control(origin_system, destination_system):
     rsp_list = requests.get(formed_route_url)
     rsp_list_json = rsp_list.json()
     for x in rsp_list_json:
-        route_list.append(find_system_from_id(x)[0])
+        #if you have the sde uncomment the below:
+        # route_list.append(find_system_from_id(x)[0])
+        #if you don't have the sde leave the below uncommented:
+        route_list.append(find_system_from_id_online(x))
     return route_list
 
 
