@@ -114,8 +114,8 @@ def main(player):
 
 
 if __name__ == "__main__":
-    origin_system = "D-PNP9"
-    destination_system = "C9N-CC"
+    origin_system = "6VDT-H"
+    destination_system = "U-HVIX"
     print("Building route and setting up game...")
     route_list = system.route_control(origin_system, destination_system)
     # route_list = unilist

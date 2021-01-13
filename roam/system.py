@@ -1,6 +1,8 @@
 from os import system, name
 import sqlite3
 # import json
+from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import as_completed
 from random import randint
 import requests
 
@@ -63,11 +65,10 @@ def route_control(origin_system, destination_system):
     formed_route_url = f"https://esi.evetech.net/latest/route/{ori_id}/{dst_id}/?datasource=tranquility&flag=shortest"
     rsp_list = requests.get(formed_route_url)
     rsp_list_json = rsp_list.json()
-    for x in rsp_list_json:
-        #if you have the sde uncomment the below:
-        # route_list.append(find_system_from_id(x)[0])
-        #if you don't have the sde leave the below uncommented:
-        route_list.append(find_system_from_id_online(x))
+    with ThreadPoolExecutor(max_workers = 10) as executor:
+        future_result = executor.map(find_system_from_id_online, rsp_list_json)
+        for future in future_result:
+            route_list.append(future)
     return route_list
 
 
