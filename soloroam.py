@@ -21,7 +21,8 @@ import roam.words as w
 import roam.system as system
 
 
-
+origin_system = "6VDT-H"
+destination_system = "U-HVIX"
 
 
 # sqlite db connect stuff for eve SDE, assume it is in the directory we are running this script
@@ -114,8 +115,7 @@ def main(player):
 
 
 if __name__ == "__main__":
-    origin_system = "6VDT-H"
-    destination_system = "U-HVIX"
+
     print("Building route and setting up game...")
     route_list = system.route_control(origin_system, destination_system)
     # route_list = unilist
