@@ -16,24 +16,24 @@ def test_version():
 
 # player ship attribute testing
 def test_atron_init():
-    player = Atron("player", 100, 100, 100, unilist[0])
-    assert player.pilot == "player"
+    player = Atron(100, unilist[0])
+    assert player.hp == 100
 
 
 def test_add_cargo():
-    player = Atron("player", 100, 100, 100, unilist[0])
+    player = Atron(100, unilist[0])
     player.add_cargo("mobile depot")
     assert player.cargo[0] == "mobile depot"
 
 
 def test_take_damage():
-    player = Atron("player", 100, 100, 100, unilist[0])
+    player = Atron(100, unilist[0])
     player.take_damage(10)
     assert player.hp == 90
 
 
 def test_player_location_change():
-    player = Atron("player", 100, 100, 100, unilist[0])
+    player = Atron(100, unilist[0])
     player.change_location(unilist[1])
     assert player.location == "G-YZUX"
 
@@ -49,18 +49,18 @@ def test_name_by_id():
     assert DP[0] == "D-PNP9"
 
 
-def test_route_list_creation():
-    route_list = []
-    origin = "D-PNP9"
-    desti = "C9N-CC"
-    ori_id = system.find_id_from_system(origin)[0]
-    dst_id = system.find_id_from_system(desti)[0]
-    formed_route_url = f"https://esi.evetech.net/latest/route/{ori_id}/{dst_id}/?datasource=tranquility&flag=shortest"
-    rsp_list = requests.get(formed_route_url)
-    rsp_list_json = rsp_list.json()
-    for x in rsp_list_json:
-        route_list.append(system.find_system_from_id(x)[0])
-    assert route_list[0] == "D-PNP9"
+# def test_route_list_creation():
+#     route_list = []
+#     origin = "D-PNP9"
+#     desti = "C9N-CC"
+#     ori_id = system.find_id_from_system(origin)[0]
+#     dst_id = system.find_id_from_system(desti)[0]
+#     formed_route_url = f"https://esi.evetech.net/latest/route/{ori_id}/{dst_id}/?datasource=tranquility&flag=shortest"
+#     rsp_list = requests.get(formed_route_url)
+#     rsp_list_json = rsp_list.json()
+#     for x in rsp_list_json:
+#         route_list.append(system.find_system_from_id(x)[0])
+#     assert route_list[0] == "D-PNP9"
 
 
 def test_get_position_in_route():
@@ -88,7 +88,7 @@ def test_npc_swarm_spawn():
 def test_status_message():
     ###test vars
     route_list = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
-    pilot = Atron("player", 100, 100, 100, route_list[0])
+    pilot = Atron(100, route_list[0])
 
     n_spawn = randint(1, 4)
     rat_swarm = []
@@ -110,7 +110,7 @@ def test_status_message():
         movement_options.append(route_list[(cur_list_pos + 1)])
 
     rat_string = f"There are {len(rat_swarm)} rats on field with you"
-    pilot_string = f"You have {pilot.hp} hp, {pilot.ammo} ammo, {pilot.nanite} paste, and are currently in {pilot.location}."
+    pilot_string = f"You have {pilot.hp} hp, and are currently in {pilot.location}."
 
     # compile to list format
     return_listicle.append(rat_string)
@@ -122,7 +122,7 @@ def test_status_message():
 def test_movement_options():
     ###test vars
     route_list = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
-    pilot = Atron("player", 100, 100, 100, route_list[2])
+    pilot = Atron(100, route_list[2])
 
     n_spawn = randint(1, 4)
     rat_swarm = []
@@ -147,7 +147,7 @@ def test_movement_options():
 def test_parse_input_else():
     ###test vars
     route_list = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
-    pilot = Atron("player", 100, 100, 100, route_list[2])
+    pilot = Atron(100, route_list[2])
 
     n_spawn = randint(1, 4)
     rat_swarm = []
@@ -173,7 +173,7 @@ def test_parse_input_move():
 
     ###test vars
     route_list = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
-    pilot = Atron("player", 100, 100, 100, route_list[2])
+    pilot = Atron(100, route_list[2])
 
     n_spawn = randint(1, 4)
     rat_swarm = []
@@ -207,7 +207,7 @@ def test_array_of_events():
 
 
 def test_rat_fight():
-    player = Atron("player", 100, 100, 100, "D-PNP9")
+    player = Atron(100, "D-PNP9")
     n_spawn = randint(2, 6)
     rat_array = []
     for n in range(n_spawn):
