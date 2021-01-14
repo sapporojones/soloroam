@@ -6,6 +6,7 @@
 
 # imports
 from roam.ships import SoloSabre
+from roam.loot import *
 
 ##0
 def cit(player):
@@ -21,11 +22,13 @@ def cit(player):
 
 ##1
 def wreck(player):
+    loot_found = randomloot()
+    value = valueofLoot(loot_found)
     encounter_text = print(
         f"\nYou notice wrecks from a fight that haven't been looted yet.  "
-        + "\nYour score increased by 50."
+        + "\nYou have looted " + loot_found + " and your score has increased by " + value
     )
-    player.score_change(50)
+    player.score_change(value)
     return encounter_text
 
 

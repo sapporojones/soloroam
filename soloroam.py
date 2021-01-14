@@ -44,6 +44,7 @@ def main(player):
     Args:
         player ([class]): [this represents the player's ship]
     """
+    saved_score = 0
     rat_array = ["reset"]
     current_fight = ""
     while player.hp >= 1:
@@ -57,6 +58,8 @@ def main(player):
             if rat_chance >= 50:
                 rat_array = system.npc_swarm_spawn()
             else:
+                # must reset here, or a sub 50 roll crashes with no rat_array found
+                rat_array = ["reset"]
                 pass
         if player.location == current_fight:
             rat_array = ["reset"]
@@ -104,14 +107,26 @@ def main(player):
                     rat_array = ["reset"]
                     current_fight = player.location
 
-    print(
-        f"\n\nYour ship explodes in to tiny pieces at the stargate in {player.location}.  "
-        + "\nYour capsule containing your body shatters from the force of the explosion.  "
-        + "\nYou are dead.  You wake up in your hangar where your death clone is set to and "
-        + "prepare to voyage out once again.  "
-        + "\no7 capsuleer the cyno is now lit. "
-        + f"\n\nYour final score was {player.score}"
-    )
+        if player.location == destination_system:
+            print(
+                    f"\n\nCongratulations, you have arrived at {player.location}.  "
+                    + "\nYou may now set a new destination, or dock up and use your points you've gained to reship.  "
+                    + "\nOr you may choose to either hold onto your points, in which case they might be lost on death "
+                    + "or save them to buy bigger and better ships"
+                    + "\no7 capsuleer the system is clear. "
+                    + f"\n\nYour final score from this trip was {player.score}")
+            saved_score += player.score
+
+    if(player.hp < 1):
+        print(
+            f"\n\nYour ship explodes in to tiny pieces at the stargate in {player.location}.  "
+            + "\nYour capsule containing your body shatters from the force of the explosion.  "
+            + "\nYou are dead.  You wake up in your hangar where your death clone is set to and "
+            + "prepare to voyage out once again.  "
+            + "\no7 capsuleer the cyno is now lit. "
+            + f"\n\nYour final score was {player.score}"
+        )
+
 
 
 if __name__ == "__main__":
