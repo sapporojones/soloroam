@@ -39,12 +39,12 @@ def test_player_location_change():
 
 
 # db system name lookups testing
-#def test_id_by_name():
+# def test_id_by_name():
 #    DP = system.find_id_from_system("D-PNP9")
 #    assert DP[0] == 30003135
 
 
-#def test_name_by_id():
+# def test_name_by_id():
 #    DP = system.find_system_from_id(30003135)
 #    assert DP[0] == "D-PNP9"
 

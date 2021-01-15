@@ -10,15 +10,17 @@ from roam.ships import Atron
 import roam.encounters as e
 from roam.loot import *
 
-#functions to create data used by functions in system library
+# functions to create data used by functions in system library
 def player_create():
     route_list = route_init()
     player = Atron(100, route_list[0])
     return player
 
+
 def route_init():
     route_list = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
     return route_list
+
 
 ##0
 def test_cit():
@@ -28,7 +30,7 @@ def test_cit():
 
 
 ##1
-#def test_wreck():
+# def test_wreck():
 #    player = player_create()
 #    e.wreck(player)
 #    assert player.score > 0
