@@ -6,11 +6,13 @@
 
 # imports
 from roam.ships import SoloSabre
-import roams.encounters as e
+from roam.ships import Atron
+import roam.encounters as e
 from roam.loot import *
 
 #functions to create data used by functions in system library
 def player_create():
+    route_list = route_init()
     player = Atron(100, route_list[0])
     return player
 
@@ -26,16 +28,16 @@ def test_cit():
 
 
 ##1
-def test_wreck():
-    player = player_create()
-    e.wreck(player)
-    assert player.score > 0
+#def test_wreck():
+#    player = player_create()
+#    e.wreck(player)
+#    assert player.score > 0
 
 
 ##2
 def test_sabre():
     player = player_create()
-    sabre(player)
+    e.sabre(player)
     assert player.hp == 80
 
 
@@ -85,4 +87,4 @@ def test_sb():
 def test_tidi():
     player = player_create()
     e.tidi(player)
-    assert player.score == 70
+    assert player.score == 30

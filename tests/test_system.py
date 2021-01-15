@@ -15,6 +15,7 @@ import roam.encounters as e
 
 #functions to create data used by functions in system library
 def player_create():
+    route_list = route_init()
     player = Atron(100, route_list[0])
     return player
 
@@ -29,11 +30,11 @@ def route_init():
 #this appears to be an unused funciton in system
 #adding test coverage for it anyways
 
-def test_current_status():
-    player = player_create()
-    route_list = route_init()
-    status_text = s.current_status(player)
-    assert len(status_text) >= 0
+#def test_current_status():
+#    player = player_create()
+#    route_list = route_init()
+#    status_text = s.current_status(player)
+#    assert len(status_text) >= 0
 
 
 
@@ -47,8 +48,8 @@ def test_find_system_from_id_online():
 #to test this function requires an active internet connection
 def test_find_id_from_system():
     name = 'd-pnp9'
-    system_id = s.find_id_from_system(name)
-    assert system_id = 30003135
+    system_id = s.find_id_from_system(name)[0]
+    assert system_id == 30003135
 
 
 #to test this function requires an active internet connection
@@ -62,7 +63,7 @@ def test_route_control():
 def test_get_position_in_route():
     route_list = route_init()
     player = player_create()
-    player.location = 'A1-AUH'
+    player.location = route_list[2]
     loc = player.location
     route_index = s.get_position_in_route(route_list, loc)
 
@@ -71,11 +72,11 @@ def test_get_position_in_route():
 
 def test_npc_swarm_spawn():
     rat_array = s.npc_swarm_spawn()
-    assert rat_array >= 2
+    assert len(rat_array) >= 2
 
 
 
-def test_movement_options(route_list, player):
+def test_movement_options():
     route_list = route_init()
     player = player_create()
     player.location = route_list[2]
