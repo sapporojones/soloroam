@@ -25,12 +25,6 @@ origin_system = "6VDT-H"
 destination_system = "U-HVIX"
 
 
-# sqlite db connect stuff for eve SDE, assume it is in the directory we are running this script
-database = r"sqlite-latest.sqlite"
-conn = sqlite3.connect(database)
-cur = conn.cursor()
-
-
 unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
 
 # eventually we'll do argument based routing or some sort of input but for now I am a living god
@@ -131,9 +125,9 @@ def main(player):
 
 if __name__ == "__main__":
 
-    #print("Building route and setting up game...")
-    #route_list = system.route_control(origin_system, destination_system)
-    route_list = unilist
+    print("Building route and setting up game...")
+    route_list = system.route_control(origin_system, destination_system)
+    # route_list = unilist
     player = Atron(100, route_list[0])
     system.clear_screen()
     w.starting_text()

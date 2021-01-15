@@ -34,19 +34,19 @@ def current_status(player):
     return
 
 
-def find_system_from_id(id):
-    cur.execute(
-        "SELECT solarSystemName FROM mapSolarSystems WHERE solarSystemID=?", (id,)
-    )
-    system_name = cur.fetchone()
-    return system_name
+# def find_system_from_id(id):
+#     cur.execute(
+#         "SELECT solarSystemName FROM mapSolarSystems WHERE solarSystemID=?", (id,)
+#     )
+#     system_name = cur.fetchone()
+#     return system_name
 
 
 def find_id_from_system(name):
-    cur.execute(
-        "SELECT solarSystemID FROM mapSolarSystems WHERE solarSystemName=?", (name,)
-    )
-    system_id = cur.fetchone()
+    url_string = f'https://esi.evetech.net/latest/search/?categories=solar_system&datasource=tranquility&language=en-us&search={name}&strict=true'
+    id_request = requests.get(url_string)
+    id_request_json = id_request.json()
+    system_id = id_request_json["solar_system"]
     return system_id
 
 

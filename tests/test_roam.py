@@ -11,7 +11,7 @@ unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
 
 
 def test_version():
-    assert __version__ == "0.2.1"
+    assert __version__ == "0.2.2"
 
 
 # player ship attribute testing
