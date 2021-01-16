@@ -5,9 +5,7 @@ by Sapporo Jones
 
 # library imports - stdlib
 from time import sleep
-import sqlite3
 from random import randint
-# import json
 
 
 # library imports - external

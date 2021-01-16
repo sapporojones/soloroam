@@ -1,5 +1,4 @@
 from os import system, name
-import sqlite3
 # import json
 from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import as_completed
@@ -10,9 +9,7 @@ from roam.ships import Rat
 import roam.encounters as e
 
 
-database = r"sqlite-latest.sqlite"
-conn = sqlite3.connect(database)
-cur = conn.cursor()
+
 
 
 def clear_screen():

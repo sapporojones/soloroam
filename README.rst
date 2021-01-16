@@ -15,8 +15,7 @@ to plot route and resolve system IDs to names.
 Changelog:
 =========
 
-0.1.0 - 
-Initial release!
+0.1.0 - Initial release!
 
 01/12/21 0.2.0 - 
 
