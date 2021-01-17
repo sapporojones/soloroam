@@ -121,7 +121,7 @@ def parse_input(player_action, movement_options, player):
     if player_action.upper() == "RAT":
         choice = "rat"
 
-    elif player_action in movement_options:
+    elif player_action.title() in movement_options:
         for x in movement_options:
             if player_action.upper() == x.upper():
                 player.location = x
@@ -171,8 +171,9 @@ def event_generator(player):
         e.dread_rat,
         e.rookie_ships,
         e.burst_jam,
+        e.argument,
     ]
-    selection = randint(0, 14)
+    selection = randint(0, 15)
 
 
     #for testing single encounter events

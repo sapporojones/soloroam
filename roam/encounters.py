@@ -37,7 +37,7 @@ def sabre(player):
     print(
         f"\nYou observe a single sabre on field with you.  "
         + "\n\nThere are no other hostiles there with you.  "
-        + "\n\nNSeeing many hostiles in local you perform a 360 degree directional scan and see a hostile fleet."
+        + "\n\nSeeing many hostiles in local you perform a 360 degree directional scan and see a hostile fleet."
         + "\n\nYou are outmatched by a destroyer class vessel and the Sabre has friends so you atteempt to run.  "
         + "\n\nWhile successful, you take 20 damage.  "
         + "\n\nYour score has been increased by 40."
@@ -130,9 +130,6 @@ def tidi(player):
     return
 
 
-##----------------------------
-
-
 ##10
 def rookie_ships(player):
     print(
@@ -210,4 +207,27 @@ def cyno(player):
     loot_found = randomloot()
     value = valueofLoot(loot_found)
     player.score_change(value)
+    return
+
+
+#15
+def argument(player):
+    print(
+        "As you jump in to system you notice two people arguing in local chat."
+    )
+    choice = input("Would you like to say something to them?\n")
+    if choice == 'yes':
+        print(
+            "As the argument between the two players reaches a dramatic crescendo you decide to contribute to their "
+            + "\ndiscussion.  "
+            + "\n\nYou patiently wait for a break in the argument and as soon as it arrives you drop your wisdom."
+            + "\n\n\"ur gay pwnd\""
+
+        )
+
+    else:
+        print(
+            "\n\nYou continue on about your business."
+        )
+
     return
