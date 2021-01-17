@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import as_completed
 from random import randint
 import requests
-
+from time import sleep
 from roam.ships import Rat
 import roam.encounters as e
 
@@ -121,12 +121,13 @@ def parse_input(player_action, movement_options, player):
     if player_action.upper() == "RAT":
         choice = "rat"
 
+    elif player_action in movement_options:
+        for x in movement_options:
+            if player_action.upper() == x.upper():
+                player.location = x
+                choice = "move"
     else:
         choice = "You spin your ship."
-    for x in movement_options:
-        if x == player_action.upper():
-            player.location = x
-            choice = "move"
     return choice
 
 
@@ -165,7 +166,20 @@ def event_generator(player):
         e.sb,
         e.cm,
         e.tidi,
+        e.cyno,
+        e.spooky,
+        e.dread_rat,
+        e.rookie_ships,
+        e.burst_jam,
     ]
-    selection = randint(0, 9)
+    selection = randint(0, 14)
+
+
+    #for testing single encounter events
+    # encounter_list = [
+    #     e.wreck,
+    #     ]
+    # selection = 0
+
     encounter_list[selection](player)
     return

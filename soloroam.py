@@ -7,7 +7,6 @@ by Sapporo Jones
 from time import sleep
 from random import randint
 
-
 # library imports - external
 # import requests
 
@@ -18,12 +17,11 @@ from roam.ships import Atron
 import roam.words as w
 import roam.system as system
 
-
-origin_system = "6VDT-H"
-destination_system = "U-HVIX"
-
+origin_system = "Innia"
+destination_system = "Kedama"
 
 unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
+
 
 # eventually we'll do argument based routing or some sort of input but for now I am a living god
 
@@ -101,15 +99,15 @@ def main(player):
 
         if player.location == destination_system:
             print(
-                    f"\n\nCongratulations, you have arrived at {player.location}.  "
-                    + "\nYou may now set a new destination, or dock up and use your points you've gained to reship.  "
-                    + "\nOr you may choose to either hold onto your points, in which case they might be lost on death "
-                    + "or save them to buy bigger and better ships"
-                    + "\no7 capsuleer the system is clear. "
-                    + f"\n\nYour final score from this trip was {player.score}")
+                f"\n\nCongratulations, you have arrived at {player.location}.  "
+                + "\nYou may now set a new destination, or dock up and use your points you've gained to reship.  "
+                + "\nOr you may choose to either hold onto your points, in which case they might be lost on death "
+                + "or save them to buy bigger and better ships"
+                + "\no7 capsuleer the system is clear. "
+                + f"\n\nYour final score from this trip was {player.score}")
             saved_score += player.score
 
-    if(player.hp < 1):
+    if (player.hp < 1):
         print(
             f"\n\nYour ship explodes in to tiny pieces at the stargate in {player.location}.  "
             + "\nYour capsule containing your body shatters from the force of the explosion.  "
@@ -120,9 +118,7 @@ def main(player):
         )
 
 
-
 if __name__ == "__main__":
-
     print("Building route and setting up game...")
     route_list = system.route_control(origin_system, destination_system)
     # route_list = unilist
