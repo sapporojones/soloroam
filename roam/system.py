@@ -1,5 +1,6 @@
 from os import system, name
 # import json
+import logging
 from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import as_completed
 from random import randint
@@ -118,16 +119,16 @@ def movement_options(route_list, player):
 
 
 def parse_input(player_action, movement_options, player):
+    logging.info(f"player_action.upper is {player_action.upper()}")
     if player_action.upper() == "RAT":
         choice = "rat"
 
-    elif player_action.title() in movement_options:
-        for x in movement_options:
-            if player_action.upper() == x.upper():
-                player.location = x
-                choice = "move"
-    else:
-        choice = "You spin your ship."
+    for x in movement_options:
+        if player_action.upper() in x.upper():
+            player.location = x
+            choice = "move"
+        else:
+            choice = "You spin your ship."
     return choice
 
 
@@ -175,8 +176,7 @@ def event_generator(player):
     ]
     selection = randint(0, 15)
 
-
-    #for testing single encounter events
+    # for testing single encounter events
     # encounter_list = [
     #     e.wreck,
     #     ]

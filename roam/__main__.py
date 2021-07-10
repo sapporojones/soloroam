@@ -6,7 +6,8 @@ by Sapporo Jones
 # library imports - stdlib
 from time import sleep
 from random import randint
-
+import logging
+import argparse
 # library imports - external
 # import requests
 
@@ -17,16 +18,23 @@ from roam.ships import Atron
 import roam.words as w
 import roam.system as system
 
-origin_system = "Innia"
-destination_system = "Kedama"
+origin_system = "6VDT-H"
+destination_system = "OWXT-5"
 
 unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
 
 
 # eventually we'll do argument based routing or some sort of input but for now I am a living god
+# Argparse options
+parser = argparse.ArgumentParser()
+parser.add_argument("-l", help="Set output level of logging.  Disabled by default.")
+parser.add_argument("-s", help="Set starting system.  Defaults to 6VDT-H.", default="6VDT-H")
+parser.add_argument("-d", help="Set destination system.  Defaults to OWXT-5.", default="OWXT-5")
+args = parser.parse_args()
 
 
 def main(player):
+
     """This is the main event loop for the game.
     As long as the player is alive (player.hp >= 0)
     the game is running this loop.
@@ -34,6 +42,7 @@ def main(player):
     Args:
         player ([class]): [this represents the player's ship]
     """
+
     saved_score = 0
     rat_array = ["reset"]
     current_fight = ""
@@ -119,8 +128,14 @@ def main(player):
 
 
 if __name__ == "__main__":
+    if args.l:
+        loglevel = str(args.l).upper()
+        numeric_level = getattr(logging, loglevel.upper(), None)
+        if not isinstance(numeric_level, int):
+            raise ValueError("Invalid log level: %s" % loglevel)
+        logging.basicConfig(level=numeric_level)
     print("Building route and setting up game...")
-    route_list = system.route_control(origin_system, destination_system)
+    route_list = system.route_control(args.s, args.d)
     # route_list = unilist
     player = Atron(100, route_list[0])
     system.clear_screen()

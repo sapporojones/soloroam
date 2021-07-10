@@ -9,7 +9,6 @@
 *.log
 *.pot
 __pycache__/*
-*/__pycache__/*
 .cache/*
 .*.swp
 */.ipynb_checkpoints/*
@@ -23,7 +22,6 @@ __pycache__/*
 .idea
 .vscode
 tags
-sqlite-latest.sqlite
 
 # Package files
 *.egg
@@ -34,11 +32,11 @@ sqlite-latest.sqlite
 # Unittest and coverage
 htmlcov/*
 .coverage
+.coverage.*
 .tox
-junit.xml
+junit*.xml
 coverage.xml
 .pytest_cache/
-.vscode/*
 
 # Build and docs folder/files
 build/*
@@ -52,3 +50,4 @@ MANIFEST
 
 # Per-project virtualenvs
 .venv*/
+.conda*/
