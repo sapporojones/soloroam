@@ -6,7 +6,10 @@
 
 # imports
 from time import sleep
-from roam.loot import randomloot, valueofLoot
+from loot import randomloot, valueofLoot
+
+
+from system import solo_fight
 
 
 ##0
@@ -14,8 +17,9 @@ def cit(player):
     print(
         f"\nYour corporation has access to a dockable structure in this system.  "
         + "\n\nYou imaptiently repair your damage there before embarking.  "
-        + "\n\nYour score increases by 20.")
-    player.structure_rep
+        + "\n\nYour score increases by 20."
+    )
+    player.structure_rep()
     player.score_change(20)
     return
 
@@ -149,7 +153,7 @@ def rookie_ships(player):
     return
 
 
-#11
+# 11
 def burst_jam(player):
     print(
         "You encounter an errant command destroyer using an entosis module on a Territorial Claim Unit. You feel cheeky"
@@ -162,7 +166,7 @@ def burst_jam(player):
     return
 
 
-#12
+# 12
 def dread_rat(player):
     print(
         "You warp to an asteroid anomaly believing a player to be there.  When you land there, there is no player."
@@ -179,11 +183,12 @@ def dread_rat(player):
     return
 
 
-#13
+# 13
 def spooky(player):
     print(
         "Your map indicates activity in this system.  When you jump in you see warp disruption bubbles everywhere.  "
-        + "\nYou see wrecks, abandoned drones, but no signs of players.  You check your directional scanner but see no")
+        + "\nYou see wrecks, abandoned drones, but no signs of players.  You check your directional scanner but see no"
+    )
     sleep(3)
     print(
         "\nresults.  After 45 seconds the interdiction bubbles despawn.  "
@@ -193,7 +198,7 @@ def spooky(player):
     return
 
 
-#14
+# 14
 def cyno(player):
     print(
         "You see a lit cynosural field on your overview 19AU from your current position.  Unable to see what is"
@@ -210,24 +215,89 @@ def cyno(player):
     return
 
 
-#15
+# 15
 def argument(player):
-    print(
-        "As you jump in to system you notice two people arguing in local chat."
-    )
+    print("As you jump in to system you notice two people arguing in local chat.")
     choice = input("Would you like to say something to them?\n")
-    if choice == 'yes':
+    if choice == "yes":
         print(
             "As the argument between the two players reaches a dramatic crescendo you decide to contribute to their "
             + "\ndiscussion.  "
             + "\n\nYou patiently wait for a break in the argument and as soon as it arrives you drop your wisdom."
-            + "\n\n\"ur gay pwnd\""
-
+            + '\n\n"ur gay pwnd"'
         )
 
     else:
-        print(
-            "\n\nYou continue on about your business."
-        )
+        print("\n\nYou continue on about your business.")
 
     return
+
+
+# q6
+def cyno_trash(player):
+    print(
+        "You click dscan as you are looking around the system and notice an a Mobile Cynosural Beacon.  There is nobody"
+        + "in local with you.  You shoot the beacon.  You feel good about the frag but receive no killmark for"
+        + "your actions.  A frag is a frag though, right?  You link the kill in alliance, nobody notices. "
+        + "\n\n This game being less cruel than real EVE Online, you still receive 100 points for your efforts."
+    )
+    player.score_change(100)
+    return
+
+
+# 17
+def hostile_perch(player):
+    print(
+        "Upon loading local you notice a handful of hostiles.  Nothing on dscan but your intel sources suggest there "
+        + "may be a gate camp here.  The out gate is outside of dscan range.  There are no celestials in range of the"
+        + " out gate.  With seconds left on your cloak timer you notice a hostile citadel parked 1100km off the out "
+        + "gate.  You warp to it at 100km.  Upon landing you notice bubbles but no hostiles.  You warp to the gate and"
+        + " land at the bubble's edge.  You turn on your prop mod and book it to the gate.  With 5km left to go you "
+        + "see the gate camp fleet returning.  Apparently you missed them while they were looking at a different gate."
+        + "You say nothing in local knowing chance provided for your escape."
+        + "\nFor your wisdom in using the citadel as a perch you gain 100 points."
+    )
+    player.score_change(100)
+    return
+
+
+# 18
+def solo_sabre(player):
+    print(
+        f"\nYou observe a single sabre on field with you.  "
+        + "\n\nThere are no other hostiles there with you.  "
+        + "\n\nHere you decide to fight.  THERE WAS A FIRE FIGHT!"
+    )
+    solo_fight(player, 25)
+    print(
+        f"As you emerge from the fight, hands shaking, pulse pounding, you scoop the loot and feel proud of your "
+        + "killmark.  For the fight you gain 200 points, which will be added to the value of the loot you find.  Gf."
+    )
+    player.getmarks(1)
+    loot_found = randomloot()
+    value = valueofLoot(loot_found)
+    player.score_change(value)
+    player.score_change(200)
+    return
+
+
+# 19
+def afk_inty(player):
+    print(
+        "You notice an interceptor that appears afk 50km off the gate.  Thirsty for a free kill you burn at it."
+        + "\n\nAs you get in blaster range and lock it up it decides it wants to fight back.  You fight to the death."
+    )
+    solo_fight(player, 10)
+    print(
+        "\n\nInties that are in blaster range aren't gonna live long.  You get a killmark and scoop the loot.  "
+        + "\nFeeling a sense of pride and acomplishment you link the kill in alliance.  Two people notice.  "
+        + "\nFor the fight you gain 200 points, which will be added to the value of the loot you find.  Gf. "
+    )
+    player.getmarks(1)
+    loot_found = randomloot()
+    value = valueofLoot(loot_found)
+    player.score_change(value)
+    player.score_change(200)
+    return
+
+

@@ -1,4 +1,5 @@
 from os import system, name
+
 # import json
 import logging
 from concurrent.futures import ThreadPoolExecutor
@@ -6,11 +7,9 @@ from concurrent.futures import as_completed
 from random import randint
 import requests
 from time import sleep
-from roam.ships import Rat
-import roam.encounters as e
-
-
-
+from ships import Rat
+from ships import SoloSabre
+import encounters as e
 
 
 def clear_screen():
@@ -41,7 +40,7 @@ def current_status(player):
 
 
 def find_id_from_system(name):
-    url_string = f'https://esi.evetech.net/latest/search/?categories=solar_system&datasource=tranquility&language=en-us&search={name}&strict=true'
+    url_string = f"https://esi.evetech.net/latest/search/?categories=solar_system&datasource=tranquility&language=en-us&search={name}&strict=true"
     id_request = requests.get(url_string)
     id_request_json = id_request.json()
     system_id = id_request_json["solar_system"]
@@ -49,7 +48,7 @@ def find_id_from_system(name):
 
 
 def find_system_from_id_online(id):
-    url_string = f'https://esi.evetech.net/latest/universe/systems/{id}/?datasource=tranquility&language=en-us'
+    url_string = f"https://esi.evetech.net/latest/universe/systems/{id}/?datasource=tranquility&language=en-us"
     id_request = requests.get(url_string)
     id_request_json = id_request.json()
     system_name = id_request_json["name"]
@@ -63,7 +62,7 @@ def route_control(origin_system, destination_system):
     formed_route_url = f"https://esi.evetech.net/latest/route/{ori_id}/{dst_id}/?datasource=tranquility&flag=shortest"
     rsp_list = requests.get(formed_route_url)
     rsp_list_json = rsp_list.json()
-    with ThreadPoolExecutor(max_workers = 10) as executor:
+    with ThreadPoolExecutor(max_workers=10) as executor:
         future_result = executor.map(find_system_from_id_online, rsp_list_json)
         for future in future_result:
             route_list.append(future)
@@ -95,7 +94,7 @@ def status_message(route_list, pilot, rat_array):
         rat_string = "\nThere are 0 rats on field with you"
     else:
         rat_string = f"\nThere are {len(rat_array)} rats on field with you"
-    pilot_string = f"\nYou have {pilot.hp} hp, and are currently in {pilot.location}.  Current score is {pilot.score}."
+    pilot_string = f"\nYou have {pilot.hp} hp, and are currently in {pilot.location}.  Current score is {pilot.score}.  Your ship has {pilot.killmarks} killmarks."
 
     # compile to list format
     return_listicle.append(rat_string)
@@ -173,8 +172,12 @@ def event_generator(player):
         e.rookie_ships,
         e.burst_jam,
         e.argument,
+        e.cyno_trash,
+        e.hostile_perch,
+        e.solo_sabre_fight,
+        e.afk_inty,
     ]
-    selection = randint(0, 15)
+    selection = randint(0, 19)
 
     # for testing single encounter events
     # encounter_list = [
@@ -183,4 +186,12 @@ def event_generator(player):
     # selection = 0
 
     encounter_list[selection](player)
+    return
+
+
+def solo_fight(player, damage):
+    sabre = SoloSabre(50)
+    while sabre.hp > 0:
+        sabre.take_damage(10)
+        player.take_damage(damage)
     return

@@ -1,4 +1,4 @@
-#functions and variables for descriptions and text shit
+# functions and variables for descriptions and text shit
 
 
 def starting_text():
@@ -11,5 +11,4 @@ def starting_text():
         + "\ntravel filament and head out.  "
         + "\n\nUpon activation of your filament you find yourself in...\n\n\n"
     )
-    return 
-
+    return

@@ -19,9 +19,10 @@ class Atron:
         self.cargo = []
         self.location = location
         self.score = 0
+        self.killmarks = 0
 
     def structure_rep(self):
-        rep_amt = 100 - player.hp
+        rep_amt = 100 - self.hp
         self.hp += rep_amt
 
     def add_cargo(self, items):
@@ -35,6 +36,9 @@ class Atron:
 
     def score_change(self, points):
         self.score += points
+
+    def getmarks(self, marks):
+        self.score += marks
 
 
 class Rat:
@@ -62,9 +66,6 @@ class NullBlob:
 class SoloSabre:
     def __init__(self, hp):
         self.hp = hp
-
-    def deal_damage(self):
-        player.hp -= 20
 
     def take_damage(self, damage):
         self.hp -= damage

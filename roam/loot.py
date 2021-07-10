@@ -1,12 +1,12 @@
 from random import seed
 from random import randint
 
-loot = [ "explo loot", "rat poop", "faction mods", "deadspace mods", "officer mods" ]
+loot = ["explo loot", "rat poop", "faction mods", "deadspace mods", "officer mods"]
 
 
 def randomloot():
-    npc_loot = "nothing";
-    randvalue = randint(1,999)
+    npc_loot = "nothing"
+    randvalue = randint(1, 999)
     if randvalue <= 200:
         npc_loot = loot[0]
     elif randvalue <= 550:
