@@ -21,24 +21,24 @@ Make sure you have the latest version of python installed in your computer.
 
 Once you have downloaded and extracted the source, open a command prompt in the source directory.
 
-Issue the command `pip install ./` or if you'd rather, make a new virtualenv then run that commmand inside of it.
+Issue the command :code:`pip install ./` or if you'd rather, make a new virtualenv then run that commmand inside of it.
 
 Usage:
 ======
 
-Once installed with pip use `python -m soloroam` to play.
+Once installed with pip use :code:`python -m soloroam` to play.
 
 If you would like to change the start or end systems or both use the -s and -d flags.
 
 Examples:
 To start with default options use:
-`python -m soloroam`
+:code:`python -m soloroam`
 
 To start in Tama and end in the default end system use:
-`python -m soloroam -s Tama`
+:code:`python -m soloroam -s Tama`
 
 To start in D-PNP9 and end in Jita use:
-`python -m soloroam -s D-PNP9 -d Jita`
+:code:`python -m soloroam -s D-PNP9 -d Jita`
 
 
 Changelog
