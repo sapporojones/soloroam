@@ -4,11 +4,18 @@
 #     #player.something
 #     return encounter_text
 
+import sys, os
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
+
 # imports
-from roam.ships import SoloSabre
+import roam.ships
 from roam.ships import Atron
-import roam.encounters as e
+
+from roam import encounters as e
 from roam.loot import *
+
+
 
 # functions to create data used by functions in system library
 def player_create():

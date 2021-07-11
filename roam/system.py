@@ -174,7 +174,7 @@ def event_generator(player):
         e.argument,
         e.cyno_trash,
         e.hostile_perch,
-        e.solo_sabre_fight,
+        e.solo_sabre,
         e.afk_inty,
     ]
     selection = randint(0, 19)

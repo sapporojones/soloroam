@@ -6,10 +6,10 @@
 
 # imports
 from time import sleep
-from loot import randomloot, valueofLoot
+import loot
 
 
-from system import solo_fight
+import system
 
 
 ##0
@@ -26,8 +26,8 @@ def cit(player):
 
 ##1
 def wreck(player):
-    loot_found = randomloot()
-    value = valueofLoot(loot_found)
+    loot_found = loot.randomloot()
+    value = loot.valueofLoot(loot_found)
     print(
         f"\nYou notice wrecks from a fight that haven't been looted yet.  "
         + f"\nYou have looted {loot_found} and your score has increased by {value}"
@@ -145,8 +145,8 @@ def rookie_ships(player):
         + "\n\nBecause rookie ships do not do that much damage you will now sit for 5 seconds while you experience "
         + "\ntaking damage from rookie ships.  Also you take 10 damage.  Thrill to the immersion.  You loot the field."
     )
-    loot_found = randomloot()
-    value = valueofLoot(loot_found)
+    loot_found = loot.randomloot()
+    value = loot.valueofLoot(loot_found)
     sleep(5)
     player.take_damage(10)
     player.score_change(value)
@@ -175,8 +175,8 @@ def dread_rat(player):
         + "\nothers land and engage the Dreadnought with you.  Shortly thereafter the Dreadnought explodes.  You loot"
         + "\nquickly and then leave.  "
     )
-    loot_found = randomloot()
-    value = valueofLoot(loot_found)
+    loot_found = loot.randomloot()
+    value = loot.valueofLoot(loot_found)
     sleep(5)
     player.take_damage(10)
     player.score_change(value)
@@ -188,10 +188,11 @@ def spooky(player):
     print(
         "Your map indicates activity in this system.  When you jump in you see warp disruption bubbles everywhere.  "
         + "\nYou see wrecks, abandoned drones, but no signs of players.  You check your directional scanner but see no"
+        + "\nresults.  "
     )
     sleep(3)
     print(
-        "\nresults.  After 45 seconds the interdiction bubbles despawn.  "
+        "\nAfter 45 seconds the interdiction bubbles despawn.  "
         + "\n\nYour score increases by 30."
     )
     player.score_change(30)
@@ -209,8 +210,8 @@ def cyno(player):
         "You land next to a Venture class industrial frigate.  There are no other ships present.  You quickly destroy"
         + "\nthe helpless frigate.  You loot the field and gon on about your business.  "
     )
-    loot_found = randomloot()
-    value = valueofLoot(loot_found)
+    loot_found = loot.randomloot()
+    value = loot.valueofLoot(loot_found)
     player.score_change(value)
     return
 
@@ -268,14 +269,14 @@ def solo_sabre(player):
         + "\n\nThere are no other hostiles there with you.  "
         + "\n\nHere you decide to fight.  THERE WAS A FIRE FIGHT!"
     )
-    solo_fight(player, 25)
+    system.solo_fight(player, 25)
     print(
         f"As you emerge from the fight, hands shaking, pulse pounding, you scoop the loot and feel proud of your "
         + "killmark.  For the fight you gain 200 points, which will be added to the value of the loot you find.  Gf."
     )
     player.getmarks(1)
-    loot_found = randomloot()
-    value = valueofLoot(loot_found)
+    loot_found = loot.randomloot()
+    value = loot.valueofLoot(loot_found)
     player.score_change(value)
     player.score_change(200)
     return
@@ -287,15 +288,15 @@ def afk_inty(player):
         "You notice an interceptor that appears afk 50km off the gate.  Thirsty for a free kill you burn at it."
         + "\n\nAs you get in blaster range and lock it up it decides it wants to fight back.  You fight to the death."
     )
-    solo_fight(player, 10)
+    system.solo_fight(player, 10)
     print(
         "\n\nInties that are in blaster range aren't gonna live long.  You get a killmark and scoop the loot.  "
         + "\nFeeling a sense of pride and acomplishment you link the kill in alliance.  Two people notice.  "
         + "\nFor the fight you gain 200 points, which will be added to the value of the loot you find.  Gf. "
     )
     player.getmarks(1)
-    loot_found = randomloot()
-    value = valueofLoot(loot_found)
+    loot_found = loot.randomloot()
+    value = loot.valueofLoot(loot_found)
     player.score_change(value)
     player.score_change(200)
     return

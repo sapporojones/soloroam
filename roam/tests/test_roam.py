@@ -1,3 +1,7 @@
+import sys, os
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
+
 from roam import __version__
 from roam.ships import Atron
 from roam.ships import Rat
