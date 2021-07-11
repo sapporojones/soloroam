@@ -16,7 +16,7 @@ import system
 def cit(player):
     print(
         f"\nYour corporation has access to a dockable structure in this system.  "
-        + "\n\nYou imaptiently repair your damage there before embarking.  "
+        + "\n\nYou impatiently repair your damage there before embarking.  "
         + "\n\nYour score increases by 20."
     )
     player.structure_rep()
