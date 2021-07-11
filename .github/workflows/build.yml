@@ -24,9 +24,9 @@ jobs:
         pip install -U pytest
         pip install PEP517
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Run tox doctests
-      run: |
-        tox -e doctests
+#    - name: Run tox doctests
+#      run: |
+#        tox -e doctests
     - name: Build docs and app with Tox and run pytest after building
       run: |
         tox
