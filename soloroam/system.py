@@ -7,9 +7,8 @@ from concurrent.futures import as_completed
 from random import randint
 import requests
 from time import sleep
-from ships import Rat
-from ships import SoloSabre
-import encounters as e
+import soloroam.ships as s
+import soloroam.encounters as e
 
 
 def clear_screen():
@@ -83,7 +82,7 @@ def npc_swarm_spawn():
     n_spawn = randint(2, 4)
     rat_array = []
     for n in range(n_spawn):
-        rat_array.append(Rat(30))
+        rat_array.append(s.Rat(30))
     return rat_array
 
 
@@ -190,7 +189,7 @@ def event_generator(player):
 
 
 def solo_fight(player, damage):
-    sabre = SoloSabre(50)
+    sabre = s.SoloSabre(50)
     while sabre.hp > 0:
         sabre.take_damage(10)
         player.take_damage(damage)

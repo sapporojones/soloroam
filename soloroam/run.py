@@ -11,14 +11,19 @@ import argparse
 
 # library imports - external
 # import requests
-
+import sys, os
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
 
 # local imports
-from ships import Atron
+import soloroam.ships as s
+import soloroam.words as words
+import soloroam.system as system
+
+
 
 # from soloroam.ships import Rat
-import words
-import system
+
 
 origin_system = "6VDT-H"
 destination_system = "OWXT-5"
@@ -133,7 +138,7 @@ def handler(args):
     print("Building route and setting up game...")
     route_list = system.route_control(args.s, args.d)
     # route_list = unilist
-    player = Atron(100, route_list[0])
+    player = s.Atron(100, route_list[0])
     system.clear_screen()
     words.starting_text()
     print(player.location)

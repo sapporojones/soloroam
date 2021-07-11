@@ -6,10 +6,10 @@
 
 # imports
 from time import sleep
-import loot
 
+import soloroam.loot as loot
+import soloroam.system as system
 
-import system
 
 
 ##0
