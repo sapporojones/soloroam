@@ -14,10 +14,6 @@ from random import randint
 unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
 
 
-def test_version():
-    assert __version__ == "v0.9.5"
-
-
 # player ship attribute testing
 def test_atron_init():
     player = Atron(100, unilist[0])
