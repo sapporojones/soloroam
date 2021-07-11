@@ -9,11 +9,11 @@ myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 
 # imports
-import roam.ships
-from roam.ships import Atron
+import soloroam.ships
+from soloroam.ships import Atron
 
-from roam import encounters as e
-from roam.loot import *
+from soloroam import encounters as e
+from soloroam.loot import *
 
 
 

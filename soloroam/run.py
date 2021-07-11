@@ -16,7 +16,7 @@ import argparse
 # local imports
 from ships import Atron
 
-# from roam.ships import Rat
+# from soloroam.ships import Rat
 import words
 import system
 

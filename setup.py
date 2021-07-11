@@ -6,11 +6,11 @@
     PyScaffold helps you to put up the scaffold of your new Python project.
     Learn more under: https://pyscaffold.org/
 """
-from setuptools import setup
+from setuptools import setup, find_packages
 
 if __name__ == "__main__":
     try:
-        setup(use_scm_version={"version_scheme": "no-guess-dev"})
+        setup(use_scm_version={"version_scheme": "no-guess-dev"}, package_dir={"":"soloroam"})
     except:  # noqa
         print(
             "\n\nAn error occurred while building the project, "

@@ -12,10 +12,10 @@ from concurrent.futures import ThreadPoolExecutor
 from concurrent.futures import as_completed
 from random import randint
 import requests
-import roam.system as s
-from roam.ships import Atron
-from roam.ships import Rat
-import roam.encounters as e
+import soloroam.system as s
+from soloroam.ships import Atron
+from soloroam.ships import Rat
+import soloroam.encounters as e
 
 
 # functions to create data used by functions in system library

@@ -2,10 +2,10 @@ import sys, os
 myPath = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, myPath + '/../')
 
-from roam import __version__
-from roam.ships import Atron
-from roam.ships import Rat
-import roam.system as system
+from soloroam import __version__
+from soloroam.ships import Atron
+from soloroam.ships import Rat
+import soloroam.system as system
 import sqlite3
 import requests
 import json
@@ -15,7 +15,7 @@ unilist = ["D-PNP9", "G-YZUX", "A1-AUH", "Q0OH-V", "X-7BIX", "C9N-CC"]
 
 
 def test_version():
-    assert __version__ == "0.2.2"
+    assert __version__ == "v0.9.5"
 
 
 # player ship attribute testing
